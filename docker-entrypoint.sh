@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-. /tmp/docker-env/bin/activate
-
-echo " -- Install requirements"
-pip install --upgrade pip
-pip install -r requirements.txt
-
+. /venv/bin/activate
 echo " -- Invoke pybuilder"
 pyb
+
+WHL=$(find -type f -name "*nexus*.whl")
+pip install $WHL
+
+python3 /venv/bin/nexus.py

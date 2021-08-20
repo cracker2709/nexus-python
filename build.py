@@ -29,12 +29,23 @@ version = str(version)
 description = str(doc.getElementsByTagName("description")[0].childNodes[0].data)
 
 install_requires = [
-    "json5",
-    "certifi",
+    "Jinja2",
+    "jsonschema",
+    "MarkupSafe",
+    "openapi-schema-validator",
+    "openapi-spec-validator",
+    "pybuilder",
+    "pycparser",
+    "pyOpenSSL",
+    "pyrsistent",
+    "python-dateutil",
+    "PyYAML",
     "requests",
-    "unittest2",
-    "jinja2",
-    "pyopenssl"
+    "requests-toolbelt",
+    "six",
+    "urllib3",
+    "Werkzeug",
+    "WTForms"
 ]
 zip_safe = False
 long_description = ''
@@ -45,12 +56,12 @@ classifiers = [
 ]
 keywords = ''
 
-author = 'NABI Team'
-author_email = 'integration_arp@auchan.com'
+author = 'Guillaume APCHAIN'
+author_email = 'guillaume.apchain@gmail.com'
 maintainer = ''
 maintainer_email = ''
 
-license = 'Auchan Retail International'
+license = 'GAP'
 
 url = '#'
 project_urls = {}
@@ -67,9 +78,10 @@ package_data = {}
 dependency_links = []
 cmdclass = {'install': install}
 python_requires = ''
-requires_dist = 'json5, certifi, requests, unittest2, jinja2, pyopenssl'
+requires_dist = 'Jinja2,jsonschema,MarkupSafe,openapi-schema-validator,openapi-spec-validator,pybuilder,pycparser,' \
+                'pyOpenSSL,pyrsistent,python-dateutil,PyYAML,requests,requests-toolbelt,six,urllib3,Werkzeug,WTForms '
 obsoletes = []
-platform = 'CentOS7'
+platform = 'Linux'
 
 # What PyBuilder should run when no tasks are given.
 # Calling "pyb" amounts to calling "pyb publish" here.

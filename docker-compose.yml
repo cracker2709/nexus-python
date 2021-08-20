@@ -1,0 +1,7 @@
+version: '3.2'
+
+services:
+  mypython:
+    image: cracker2709/nexus-requester:latest
+    container_name: nexus-requester
+    restart: always
