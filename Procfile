@@ -1,1 +1,1 @@
-web: python src/main.py --log-file -
+web: python src/main/nexus.py --log-file -
