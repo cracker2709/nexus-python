@@ -35,13 +35,13 @@ def index():
                            wallpaper="static/img/wallpaper.jpg", form=form)
 
 
-@app.route('/api/nexus/search/', methods=['post'])
+@app.route('/api/nexus/search/', methods=['get', 'post'])
 def search_artifact():
     group = request.form.get('group')
     artifact = request.form.get('artifact')
     version = request.form.get('version')
     extension = request.form.get('extension')
-    display_ca_bundle()
+    display_ca_bundle(),
     return maven_search(group=group,
                         artifact=artifact,
                         version=version,

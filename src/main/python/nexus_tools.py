@@ -37,6 +37,7 @@ def display_ca_bundle():
 
 
 def maven_search(group, artifact, version, extension):
+    log.info("maven_search [IN]")
     c_url = "%s%s" % (MAVEN_API_URL, MAVEN_QUERY_URL)
 
     query_string = ""
@@ -66,6 +67,7 @@ def maven_search(group, artifact, version, extension):
             query_string.replace("p:", " AND p:")
 
     c_url += query_string.replace(" ", "%20")
+    log.info("Querying %s", c_url)
     value = requests.get(c_url, verify=locate_cert_file())
     log.info('Connection %s to OK.', c_url)
     return value.text
