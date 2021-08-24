@@ -1,19 +1,19 @@
-FROM python:3 as intermediate
+FROM python:3 as build
 RUN mkdir -p /build
-# those don't change often
-ADD requirements.txt /build/requirements.txt
-RUN python3 -m venv /venv \
-     && . /venv/bin/activate \
-     && /venv/bin/python3 -m pip install --upgrade pip \
-     && pip install -r /build/requirements.txt
-
-FROM python:3
-# the data comes from the above container
-COPY --from=intermediate /venv /venv
-ADD requirements.txt /build/requirements.txt
-# this command, starts from an almost-finished state every time
+COPY . /build
 WORKDIR /build
-RUN  /venv/bin/pip install -r requirements.txt
-ADD docker-entrypoint.sh /build/docker-entrypoint.sh
+RUN python3 -m venv /venv \
+ && . /venv/bin/activate \
+ && /venv/bin/python3 -m pip install --upgrade pip \
+ && pip install -r /build/requirements.txt \
+ && pyb && WHL=$(find -type f -name "*nexus*.whl") \
+ && pip install $WHL \
+ && cp -r src/main/scripts/static src/main/scripts/templates src/main/scripts/certificate.pem docker-entrypoint.sh /venv/bin/
+
+#
+FROM python:3
+ENV PATH="/venv/bin:$PATH"
+# # the data comes from the above container
+COPY --from=build /venv /venv
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
 
