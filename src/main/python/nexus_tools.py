@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import glob
 import logging
 
 import requests
@@ -21,9 +22,13 @@ log.addHandler(c_handler)
 MAVEN_API_URL = "https://search.maven.org/"
 MAVEN_QUERY_URL = "solrsearch/select?q="
 
+def locate_cert_file():
+    return glob.glob("**/*certificate.pem", recursive=True)[0]
 
-def display_ca_bundle(cert):
-    with open("certificate.pem", 'rb') as infile:
+
+def display_ca_bundle():
+    file = locate_cert_file()
+    with open(file, 'rb') as infile:
         custom_ca = infile.read()
         x509 = load_certificate(
             FILETYPE_PEM,
@@ -31,7 +36,7 @@ def display_ca_bundle(cert):
         log.debug(x509.get_subject())
 
 
-def maven_search(group, artifact, version, extension, cert):
+def maven_search(group, artifact, version, extension):
     c_url = "%s%s" % (MAVEN_API_URL, MAVEN_QUERY_URL)
 
     query_string = ""
@@ -61,6 +66,6 @@ def maven_search(group, artifact, version, extension, cert):
             query_string.replace("p:", " AND p:")
 
     c_url += query_string.replace(" ", "%20")
-    value = requests.get(c_url, verify=cert)
+    value = requests.get(c_url, verify=locate_cert_file())
     log.info('Connection %s to OK.', c_url)
     return value.text

@@ -9,7 +9,6 @@ from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__, template_folder='templates')
 
-cert = "certificate.pem"
 api = "/service/rest/v1/search/assets"
 
 SECRET_KEY = os.urandom(32)
@@ -42,12 +41,11 @@ def search_artifact():
     artifact = request.form.get('artifact')
     version = request.form.get('version')
     extension = request.form.get('extension')
-    display_ca_bundle(cert=cert)
+    display_ca_bundle()
     return maven_search(group=group,
                         artifact=artifact,
                         version=version,
-                        extension=extension,
-                        cert=cert)
+                        extension=extension)
 
 
 if __name__ == "__main__":
