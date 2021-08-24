@@ -14,5 +14,6 @@ ADD requirements.txt /build/requirements.txt
 # this command, starts from an almost-finished state every time
 WORKDIR /build
 RUN  /venv/bin/pip install -r requirements.txt
+ADD docker-entrypoint.sh /build/docker-entrypoint.sh
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
 
