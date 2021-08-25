@@ -42,9 +42,6 @@ def search_artifact():
     version = request.form.get('version')
     extension = request.form.get('extension')
     display_ca_bundle()
-    headers = {
-        'Location': 'http://www.example.com'
-    }
     return maven_search(group=group,
                         artifact=artifact,
                         version=version,
