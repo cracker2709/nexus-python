@@ -22,6 +22,7 @@ log.addHandler(c_handler)
 MAVEN_API_URL = "https://search.maven.org/"
 MAVEN_QUERY_URL = "solrsearch/select?q="
 
+
 def locate_cert_file():
     return glob.glob("**/*certificate.pem", recursive=True)[0]
 
