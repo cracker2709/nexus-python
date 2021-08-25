@@ -36,4 +36,4 @@ $ heroku container:release web -a nexus-requester
 # Okteto
 
 * Delivery thanks to docker-compose file based on docker hub image
-* Access [Nexus Requster via Okteto](https://nexus-search-cracker2709.cloud.okteto.net)
+* Access [Nexus Requester via Okteto](https://nexus-search-cracker2709.cloud.okteto.net)
