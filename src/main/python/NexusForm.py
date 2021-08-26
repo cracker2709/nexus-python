@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, HiddenField
 
 
 class NexusForm(FlaskForm):
@@ -7,4 +7,7 @@ class NexusForm(FlaskForm):
     artifact = StringField('artifact')
     version = StringField('version')
     extension = StringField('extension')
-    submit = SubmitField('Search')
+    target_api = HiddenField(default="/")
+    submit = SubmitField(label='Search')
+    submit_new = SubmitField(label='Search New page')
+

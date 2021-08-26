@@ -9,7 +9,11 @@
 
 {% block content %}
     <div class="container-fluid">
-        <form action="{{ url_for('search_artifact') }}" method="post" role="form">
+        <!--
+        For posting to url matching search_artifact
+        <form action="{{ url_for('search_artifact') }}" method="post" role="form" id="nexus_search">
+        -->
+        <form onsubmit="formFunc()" method="post" role="form" id="nexus_search">
             {{ form.hidden_tag() }}
             <table class=".table-condensed">
                 <tr><td>{{ form.group.label }}<td>{{ form.group() }}</td></tr>
@@ -18,7 +22,8 @@
                 <tr><td>{{ form.extension.label }}</td><td>{{ form.extension() }}</td></tr>
                 <tr><td>{{ form.hidden_tag() }}</td>
             </table>
-            {{ form.submit() }}
+            {{ form.submit() }} {{ form.submit_new() }}
         </form>
+        {{ result }}
     </div>
 {% endblock %}
